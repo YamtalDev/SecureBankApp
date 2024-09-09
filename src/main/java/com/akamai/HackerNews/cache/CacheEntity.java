@@ -1,4 +1,4 @@
-MIT License
+/******************************************************************************
 
 Copyright (c) 2023 Tal Aharon
 
@@ -19,3 +19,36 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+******************************************************************************/
+
+package com.akamai.HackerNews.cache;
+
+import com.akamai.HackerNews.dto.NewsPostResponseDTO;
+
+/******************************************************************************
+ * @description: Representation of a cache entity that holds a NewsPostResponseDTO 
+ * and its associated rank. This class is used within the RankedCache to store and 
+ * manage cache entries with their ranks.
+******************************************************************************/
+public class CacheEntity
+{
+    private NewsPostResponseDTO entity;
+    private Double rank;
+
+    public CacheEntity(NewsPostResponseDTO entity, Double rank)
+    {
+        this.rank = rank;
+        this.entity = entity;
+    }
+
+    public NewsPostResponseDTO getEntity()
+    {
+        return (entity);
+    }
+
+    public Double getRank()
+    {
+        return (rank);
+    }
+}
