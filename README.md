@@ -1,18 +1,24 @@
 # Secure Web Banking Application
 
-![Node.js](https://img.shields.io/badge/Node.js-22.9.0-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![npm](https://img.shields.io/badge/npm-10.8.3-CB3837?style=for-the-badge&logo=npm&logoColor=white)
-![Angular](https://img.shields.io/badge/Angular-15.0.0-DD0031?style=for-the-badge&logo=angular&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-4.8.4-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![Express.js](https://img.shields.io/badge/Express.js-4.18.2-000000?style=for-the-badge&logo=express&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-5.0.9-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-20.10.17-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![Kubernetes](https://img.shields.io/badge/Kubernetes-1.25.0-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)
-![AWS](https://img.shields.io/badge/AWS-Cloud-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white)
-![Swagger](https://img.shields.io/badge/Swagger-2.0-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)
-![Twilio](https://img.shields.io/badge/Twilio-API-F22F46?style=for-the-badge&logo=twilio&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-![Figma](https://img.shields.io/badge/Figma-Design%20Tool-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
+# Secure Web Banking Application
+
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Build Status](https://github.com/YourUsername/SecureWebBankingApp/actions/workflows/build.yml/badge.svg)](https://github.com/YourUsername/SecureWebBankingApp/actions/workflows/build.yml)
+[![Tests](https://github.com/YourUsername/SecureWebBankingApp/actions/workflows/tests.yml/badge.svg)](https://github.com/YourUsername/SecureWebBankingApp/actions/workflows/tests.yml)
+[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/YourUsername/SecureWebBankingApp)
+[![Node.js Version](https://img.shields.io/badge/Node.js-v22.9.0-339933.svg?logo=nodedotjs&style=flat)](https://nodejs.org/en/)
+[![npm Version](https://img.shields.io/badge/npm-v10.8.3-CB3837.svg?logo=npm&style=flat)](https://www.npmjs.com/)
+[![Angular Version](https://img.shields.io/badge/Angular-v15.0.0-DD0031.svg?logo=angular&style=flat)](https://angular.io/)
+[![TypeScript Version](https://img.shields.io/badge/TypeScript-v4.8.4-3178C6.svg?logo=typescript&style=flat)](https://www.typescriptlang.org/)
+[![Express.js Version](https://img.shields.io/badge/Express.js-v4.18.2-000000.svg?logo=express&style=flat)](https://expressjs.com/)
+[![MongoDB Version](https://img.shields.io/badge/MongoDB-v5.0.9-47A248.svg?logo=mongodb&style=flat)](https://www.mongodb.com/)
+[![Docker Version](https://img.shields.io/badge/Docker-v20.10.17-2496ED.svg?logo=docker&style=flat)](https://www.docker.com/)
+[![Kubernetes Version](https://img.shields.io/badge/Kubernetes-v1.25.0-326CE5.svg?logo=kubernetes&style=flat)](https://kubernetes.io/)
+[![AWS](https://img.shields.io/badge/AWS-Cloud-FF9900.svg?logo=amazonaws&style=flat)](https://aws.amazon.com/)
+[![Swagger](https://img.shields.io/badge/Swagger-API-85EA2D.svg?logo=swagger&style=flat)](https://swagger.io/)
+[![Twilio](https://img.shields.io/badge/Twilio-API-F22F46.svg?logo=twilio&style=flat)](https://www.twilio.com/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+
 
 ## Project Overview
 
