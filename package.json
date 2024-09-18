@@ -2,10 +2,11 @@
   "name": "rest-api-db",
   "version": "0.0.0",
   "description": "REST API implementation using node.js express and Mongodb",
-  "main": "index.js","scripts": {
+  "main": "index.js",
+  "scripts": {
     "dev": "nodemon",
     "build": "tsc"
-   },
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/YamtalDev/REST-API.git"
@@ -32,7 +33,7 @@
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
-    "express": "^4.18.2",
+    "express": "^4.21.0",
     "mongoose": "^7.5.0"
   }
 }

@@ -2,18 +2,20 @@
 
 # Secure Web Banking Application
 
+# Secure Web Banking Application
+
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Build Status](https://github.com/YourUsername/SecureWebBankingApp/actions/workflows/build.yml/badge.svg)](https://github.com/YourUsername/SecureWebBankingApp/actions/workflows/build.yml)
-[![Tests](https://github.com/YourUsername/SecureWebBankingApp/actions/workflows/tests.yml/badge.svg)](https://github.com/YourUsername/SecureWebBankingApp/actions/workflows/tests.yml)
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/YourUsername/SecureWebBankingApp)
+[![Version](https://img.shields.io/badge/version-0.0.1-blue.svg)](https://github.com/YourUsername/SecureWebBankingApp)
 [![Node.js Version](https://img.shields.io/badge/Node.js-v22.9.0-339933.svg?logo=nodedotjs&style=flat)](https://nodejs.org/en/)
 [![npm Version](https://img.shields.io/badge/npm-v10.8.3-CB3837.svg?logo=npm&style=flat)](https://www.npmjs.com/)
-[![Angular Version](https://img.shields.io/badge/Angular-v15.0.0-DD0031.svg?logo=angular&style=flat)](https://angular.io/)
-[![TypeScript Version](https://img.shields.io/badge/TypeScript-v4.8.4-3178C6.svg?logo=typescript&style=flat)](https://www.typescriptlang.org/)
-[![Express.js Version](https://img.shields.io/badge/Express.js-v4.18.2-000000.svg?logo=express&style=flat)](https://expressjs.com/)
-[![MongoDB Version](https://img.shields.io/badge/MongoDB-v5.0.9-47A248.svg?logo=mongodb&style=flat)](https://www.mongodb.com/)
-[![Docker Version](https://img.shields.io/badge/Docker-v20.10.17-2496ED.svg?logo=docker&style=flat)](https://www.docker.com/)
-[![Kubernetes Version](https://img.shields.io/badge/Kubernetes-v1.25.0-326CE5.svg?logo=kubernetes&style=flat)](https://kubernetes.io/)
+[![Angular CLI Version](https://img.shields.io/badge/Angular_CLI-v18.2.4-DD0031.svg?logo=angular&style=flat)](https://angular.io/)
+[![TypeScript Version](https://img.shields.io/badge/TypeScript-v5.6.2-3178C6.svg?logo=typescript&style=flat)](https://www.typescriptlang.org/)
+[![Express.js Version](https://img.shields.io/badge/Express.js-v4.21.0-000000.svg?logo=express&style=flat)](https://expressjs.com/)
+[![MongoDB Version](https://img.shields.io/badge/MongoDB-vX.Y.Z-47A248.svg?logo=mongodb&style=flat)](https://www.mongodb.com/)
+[![Docker Version](https://img.shields.io/badge/Docker-vX.Y.Z-2496ED.svg?logo=docker&style=flat)](https://www.docker.com/)
+[![Minikube Version](https://img.shields.io/badge/Minikube-v1.34.0-326CE5.svg?logo=kubernetes&style=flat)](https://minikube.sigs.k8s.io/docs/)
+[![kubectl Version](https://img.shields.io/badge/kubectl-v1.31.0-326CE5.svg?logo=kubernetes&style=flat)](https://kubernetes.io/docs/reference/kubectl/)
+[![Kustomize Version](https://img.shields.io/badge/Kustomize-v5.4.2-326CE5.svg?logo=kubernetes&style=flat)](https://kustomize.io/)
 [![AWS](https://img.shields.io/badge/AWS-Cloud-FF9900.svg?logo=amazonaws&style=flat)](https://aws.amazon.com/)
 [![Swagger](https://img.shields.io/badge/Swagger-API-85EA2D.svg?logo=swagger&style=flat)](https://swagger.io/)
 [![Twilio](https://img.shields.io/badge/Twilio-API-F22F46.svg?logo=twilio&style=flat)](https://www.twilio.com/)
