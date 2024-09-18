@@ -1,9 +1,5 @@
 # Secure Web Banking Application
 
-# Secure Web Banking Application
-
-# Secure Web Banking Application
-
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-0.0.1-blue.svg)](https://github.com/YourUsername/SecureWebBankingApp)
 [![Node.js Version](https://img.shields.io/badge/Node.js-v22.9.0-339933.svg?logo=nodedotjs&style=flat)](https://nodejs.org/en/)
@@ -11,8 +7,8 @@
 [![Angular CLI Version](https://img.shields.io/badge/Angular_CLI-v18.2.4-DD0031.svg?logo=angular&style=flat)](https://angular.io/)
 [![TypeScript Version](https://img.shields.io/badge/TypeScript-v5.6.2-3178C6.svg?logo=typescript&style=flat)](https://www.typescriptlang.org/)
 [![Express.js Version](https://img.shields.io/badge/Express.js-v4.21.0-000000.svg?logo=express&style=flat)](https://expressjs.com/)
-[![MongoDB Version](https://img.shields.io/badge/MongoDB-vX.Y.Z-47A248.svg?logo=mongodb&style=flat)](https://www.mongodb.com/)
-[![Docker Version](https://img.shields.io/badge/Docker-vX.Y.Z-2496ED.svg?logo=docker&style=flat)](https://www.docker.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-vX.Y.Z-47A248.svg?logo=mongodb&style=flat)](https://www.mongodb.com/)
+[![Docker Version](https://img.shields.io/badge/Docker-v24.0.7-2496ED.svg?logo=docker&style=flat)](https://www.docker.com/)
 [![Minikube Version](https://img.shields.io/badge/Minikube-v1.34.0-326CE5.svg?logo=kubernetes&style=flat)](https://minikube.sigs.k8s.io/docs/)
 [![kubectl Version](https://img.shields.io/badge/kubectl-v1.31.0-326CE5.svg?logo=kubernetes&style=flat)](https://kubernetes.io/docs/reference/kubectl/)
 [![Kustomize Version](https://img.shields.io/badge/Kustomize-v5.4.2-326CE5.svg?logo=kubernetes&style=flat)](https://kustomize.io/)
