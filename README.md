@@ -1,421 +1,473 @@
-# Hacker News RESTFul API
+# Secure Web Banking Application
 
-<p align="center">
-  <img src="./art/toolsNversions.png" alt="tools">
-</p>
+![Node.js](https://img.shields.io/badge/Node.js-22.9.0-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![npm](https://img.shields.io/badge/npm-10.8.3-CB3837?style=for-the-badge&logo=npm&logoColor=white)
+![Angular](https://img.shields.io/badge/Angular-15.0.0-DD0031?style=for-the-badge&logo=angular&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-4.8.4-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-4.18.2-000000?style=for-the-badge&logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-5.0.9-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-20.10.17-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-1.25.0-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-Cloud-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white)
+![Swagger](https://img.shields.io/badge/Swagger-2.0-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)
+![Twilio](https://img.shields.io/badge/Twilio-API-F22F46?style=for-the-badge&logo=twilio&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![Figma](https://img.shields.io/badge/Figma-Design%20Tool-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 
 ## Project Overview
 
-The Hacker News project is a lightweight system similar to Hacker 
-News web site that allows users to post text-based news, up vote/down vote posts, and view a 
-list of top posts. RESTful API that support CRUD operation such as: POST, PUT, GET(all and top top posts), DELETE, PATCH(up vote down and change post).
-
+The Secure Web Banking Application is a web-based system that allows users to sign up, verify their phone number via SMS, log in, view their account balance, view recent transactions, and send money to other registered users. The application adheres to industry best practices, utilizing modern technologies and frameworks to ensure security, scalability, and maintainability.
 
 ## Requirements
 
-1. Support simple text-based news posts.
+1. **User Authentication and Authorization:**
 
-2. RESTful API to handle CRUD operations, including creating, updating, reading, upvoting, and downvoting posts.
+   - Sign-up with email, password, and phone number.
+   - Phone number verification using a one-time passcode (OTP) sent via SMS.
+   - Secure sign-in with JWT authentication.
+   - Protected dashboard accessible only after authentication.
 
-3. Storage Engine: MySQL local or cloud.
+2. **Transactions:**
 
-4. Implementation Language: [Java](https://www.java.com/en/).
+   - View account balance (randomly assigned upon sign-up for demo purposes).
+   - View recent transactions.
+   - Send money to other registered users by email.
+   - Validate sufficient balance and recipient existence before processing transactions.
 
-5. FrameWork: [Spring boot](https://spring.io/projects/spring-boot) and Java.
+3. **Technology Stack:**
 
-6. Efficient retrieval of `top posts` from the storage engine.
+   - **Frontend:** [Angular](https://angular.io/) with [TypeScript](https://www.typescriptlang.org/).
+   - **Backend:** [Node.js](https://nodejs.org/en/) with [Express.js](https://expressjs.com/).
+   - **Database:** [MongoDB](https://www.mongodb.com/).
+   - **SMS Service:** [Twilio](https://www.twilio.com/) (or a free alternative).
+   - **API Documentation:** [Swagger](https://swagger.io/).
+   - **Containerization:** [Docker](https://www.docker.com/).
+   - **Orchestration:** [Kubernetes](https://kubernetes.io/) for microservices.
+   - **Deployment:** AWS (Amazon Web Services) with local deployment via Docker Compose.
 
-7. Costume cache implementation to manage entities.
+4. **Additional Tools:**
 
-8. Dockerization of the project to containers: both the REST API service and the storage engine.
+   - **UI Design:** [Figma](https://www.figma.com/) for implementing the provided designs.
+   - **Version Control:** [Git](https://git-scm.com/).
 
-9. Unit tests and integration for the system.
+## Main Entities
 
-## Main entities
-
-**News Post:**
-
-Attributes:
-
-* `postId`: Unique identifier for each news post.
-* `postedBy`: Username of the user who created the post.
-* `post`: The text content of the news post.
-* `link`: URL link related to the post.
-* `creationTime`: Timestamp indicating when the post was created.
-* `timeElapsed`: Time elapsed since post creation.
-* `rank`: A numeric value calculated based on the post's votes and creation time.
-* `votes`: The count of votes (upvotes and downvotes) received by the post.
-
-**Client request:**
-
-Attributes:
-
-* `postedBy`: User name (username) of the user creating the post.
-* `post`: The text content of the news post.
-* `link`: A URL link associated with the post.
-
-- NOTE:  fOR PATCH request the client entity will be only `post` and `link` to change.
-
-**Server response:**
+**User:**
 
 Attributes:
 
-* `postId`: The unique identifier for the news post.
-* `postedBy`: The username of the user who created or updated the post.
-* `post`: The text content of the news post.
-* `link`: The URL link associated with the post.
-* `timeElapsed`: Time elapsed since the post was created, similar to * the "News Post" entity.
-* `votes`: The count of votes (upvotes and downvotes) received by the post.
+- `userId`: Unique identifier for each user.
+- `email`: User's email address.
+- `password`: Hashed password for authentication.
+- `phoneNumber`: User's phone number.
+- `isVerified`: Boolean indicating if the phone number has been verified.
+- `balance`: Current account balance.
+- `createdAt`: Timestamp when the account was created.
+
+**Transaction:**
+
+Attributes:
+
+- `transactionId`: Unique identifier for each transaction.
+- `senderEmail`: Email address of the sender.
+- `receiverEmail`: Email address of the receiver.
+- `amount`: Amount of money transferred.
+- `timestamp`: Timestamp when the transaction occurred.
+- `type`: Indicates 'credit' or 'debit'.
+
+**OTP Verification:**
+
+Attributes:
+
+- `email`: Email address associated with the OTP.
+- `otpCode`: One-time passcode sent to the user's phone.
+- `expiresAt`: Expiration time of the OTP.
 
 ## Features
 
-- Hourly asynchronous updates of the database and cache eviction.
-- Configurable `cache-size`, `top posts list size`, `async update interval`, `async initial delay`.
-- Get Top Posts Special method, calculated from the time of post and its votes.
-- Costume caching mechanism to enhances performance for client requests of `top-posts` end point.
-- Indexing on the database `rank` for optimized performance for `top-posts` end point.
+- **User Registration and Verification:**
+
+  - Users can sign up with email, password, and phone number.
+  - Phone number verification via OTP sent through SMS.
+  - Validation to prevent duplicate registrations with the same email.
+
+- **Secure Authentication:**
+
+  - Passwords stored securely using hashing (e.g., bcrypt).
+  - JWT used for session management and route protection.
+
+- **User Dashboard:**
+
+  - Displays account balance and recent transactions.
+  - Provides an option to sign out.
+
+- **Money Transfer:**
+
+  - Users can send money to other registered users.
+  - Validates recipient's existence and sufficient sender balance.
+  - Updates transaction history for both sender and receiver.
+
+- **API Documentation:**
+
+  - APIs documented using Swagger for easy integration and testing.
+
+- **Containerization and Deployment:**
+
+  - Dockerized services for consistent environment setup.
+  - Kubernetes used for orchestrating microservices.
+  - AWS used for deployment with an option for local deployment using Docker Compose.
+
+- **Industry Best Practices:**
+
+  - Clean code with proper architecture.
+  - Secure coding practices to protect sensitive data.
+  - Use of environment variables for configuration.
 
 <br>
 
 <p align="center">
-  <img src="./art/diagram.png" alt="Diagram">
+  <img src="./art/architecture_diagram.png" alt="Architecture Diagram">
 </p>
 
 <br>
 
+
+
 # Usage
-To utilize this Spring Boot REST API project, follow these steps:
+
+To utilize this web banking application, follow these steps:
 
 ### Prerequisites
+
 Before you begin, ensure you have the following prerequisites installed on your system:
 
-- **Java (JDK):** If you don't have Java installed, you can download and install it from the official website:
-  - [Download Java for Windows](https://www.oracle.com/java/technologies/javase-downloads.html) (Windows)
-  - [Download Java for macOS](https://www.oracle.com/java/technologies/javase-downloads.html) (macOS)
-  - [Download Java for Linux](https://openjdk.java.net/install/) (Linux)
+- **Node.js and npm:** If you don't have Node.js installed, you can download it from the official website:
 
-- **Maven:** If you don't have Maven installed, you can download and install it from the official website:
-  - [Download Maven](https://maven.apache.org/download.cgi)
+  - [Download Node.js](https://nodejs.org/en/download/)
 
-- **MySQL Database:** The project uses a MySQL database for data storage. Make sure you have MySQL installed and running on your system.
-  - [Download MySQL](https://dev.mysql.com/downloads/mysql/)
+- **Angular CLI:** Install Angular CLI globally using npm:
 
-- **Docker and Docker Compose:** If you prefer to run the project using Docker containers, make sure you have Docker and Docker Compose installed on your system.
+  ```shell
+  npm install -g @angular/cli
+  
+  ```
 
-  - [Download Docker](https://docs.docker.com/get-docker/)
+- **MongoDB:** Ensure you have MongoDB installed and running on your system.
+
+  - [Download MongoDB](https://www.mongodb.com/try/download/community)
+
+- **Docker and Docker Compose:** If you prefer to run the project using Docker containers, make sure you have Docker and Docker Compose installed.
+
+  - [Download Docker](https://docs.docker.com/get-started/get-docker/)
   - [Download Docker Compose](https://docs.docker.com/compose/install/)
+
+
+- **AWS CLI (Optional):** For deployment to AWS.
+
+  - [Install AWS CLI](https://aws.amazon.com/cli/)
 
 ### You can choose to run the project natively or with Docker, depending on your preference and system configuration.
 
+
 # Installation
+## Clone or Download the Repository
 
-1. **Clone or Download the Repository:**
-   You can clone this Git repository or download it as a ZIP file to your local machine.
+You can clone this Git repository or download it as a ZIP file to your local machine.
 
-``` shell
-git clone https://github.com/YamtalDev/HackerNews-API.git
-cd HackerNews-API
+```shell 
+git clone https://github.com/YamtalDev/SecureBankApp.git
+cd SecureBankApp
+
+```
+Backend Setup
+1. Navigate to the Backend Directory:
+
+```shell 
+cd backend
 
 ```
 
-2. **Database and caching configuration:**
-Open the src/main/resources/application.properties file and configure your MySQL 
-database URL, username, password, `cache.size`, `cache.top-posts-size`, `async.update.interval`, `async.initial-delay`:
+2. Install Dependencies:
 
-``` shell
-
-spring.datasource.url=jdbc:mysql://localhost:3306/<your-database-name>
-spring.datasource.username=<your-username>
-spring.datasource.password=<your-password>
-
-# Application Configuration
-# Define the initial delay and update interval for asynchronous tasks.
-app.async.initial-delay = 0          # Immediately invoked at start up 
-app.async.update.interval = 3600000  # Every hour
-
-# Cache Configuration
-# Define the maximum cache size and size of the topPosts list.
-app.cache.size=600
-app.cache.top-posts-size=5
-
-```
-3. **Database:** 
-After you configured your data base settings in the application.properties file, make sure your local mysql database is up and running and you have a data base named after what you passed as an argument to `jdbc:mysql://localhost:3306/<your-database-name>`.
-
-``` shell
-
-sudo service mysql start
-sudo service mysql status
-mysql -u root -p
+```shell 
+npm install
 
 ```
 
-4. **Compile the Project:**
-Use Maven to compile the project:
+3. Environment Variables:
+Create a `.env` file in the `backend` directory and add the following configurations:
 
-``` shell
+```shell 
 
-mvn compile
-
-```
-
-5. **Run Tests:** The test are written as stabs right now and have to be implemented(see TODO list at the end of the README file).
-
-Run the project's tests to ensure everything is working as expected:
-
-``` shell
-
-mvn test
+PORT=3000
+MONGODB_URI=mongodb://localhost:27017/bankapp
+JWT_SECRET=your_jwt_secret_key
+TWILIO_ACCOUNT_SID=your_twilio_account_sid
+TWILIO_AUTH_TOKEN=your_twilio_auth_token
+TWILIO_PHONE_NUMBER=your_twilio_phone_number
 
 ```
 
-#### NOTE: You can find a postman collection in the root directory of the project.
+ - Replace your_jwt_secret_key with a secure key.
+ - For Twilio configurations, if you're using Twilio's free trial, replace the placeholders with your actual account details.
 
-6. **Run the Project:**
+ 4. Run the Backend Server:
 
-Start the project using Maven:
+```shell 
+npm start
+```
 
-``` shell
+ - The backend server should now be running on `http://localhost:3000`.
 
-mvn spring-boot:run
+
+# Frontend Setup
+1. Navigate to the Frontend Directory:
+
+```shell
+cd ../frontend
+```
+
+2. Install Dependencies:
+
+```shell
+npm install
 
 ```
 
-## Spin up with Docker
+3. Environment Variables:
 
-1. Make sure that you do not have any process that is running on ports: 8080 and 3306.
+Create an `environment.ts` file in the `src/environments` directory with the following content:
+
+``` typescript
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:3000/api'
+};
+```
+
+4. Run the Frontend Server:
 
 ``` shell
-
-sudo lsof -i :3306 && sudo lsof -i :8080
+ng serve
 
 ```
 
-If you do have processes active on these ports please kill them using `kill proc_pid`
+ - The frontend application should now be running on `http://localhost:4200`.
 
-2. Run the Docker Containers:
-Start the Docker containers for the application and the MySQL database:
 
-``` shell
+# MongoDB Setup
+Ensure that MongoDB is running on your local machine. If installed locally, you can start it with:
 
-docker-compose up
-
+```shell
+mongod
 ```
 
-# Access the API using http CRUD operations
+Alternatively, you can use MongoDB Atlas for a cloud-hosted database. Update `MONGODB_URI` in the `.env` file accordingly.
 
-You can access the API by sending HTTP requests to http://localhost:8080/api/news from your local machine.
+# Spin Up with Docker
+1. Ensure No Services Are Running on Required Ports:
 
-## Create a New Post
+```shell
+sudo lsof -i :3000
+sudo lsof -i :4200
+sudo lsof -i :27017
+```
 
-### Request
+ - Kill any processes using these ports if necessary.
+
+2. Navigate to the Root Directory:
+
+```shell
+cd ../
+```
+
+3. Run Docker Containers:
+
+
+```shell
+docker-compose up --build
+```
+
+ - This command builds and starts all services defined in the `docker-compose.yml` file.
+
+4. Access the Application:
+
+ - Frontend: [http://localhost:4200](http://localhost:4200)
+ - Backend API: [http://localhost:3000/api](http://localhost:3000/api)
+
+ # API Documentation
+
+API documentation is available via Swagger UI:
+ - [Access Swagger UI](http://localhost:3000/api-docs)
+
+ - This provides a detailed overview of all API endpoints, request and response schemas, and allows for interactive testing. 
+ 
+# Features and Endpoints
+
+1. User Registration
+
+ - Endpoint:
 
 ``` http
-POST http://localhost:8080/api/news
-Content-Type: application/json
+POST /api/auth/register
+```
 
+ - Request Body:
+
+```json
 {
-    "postedBy": "User",
-    "post": "This is a new post",
-    "link": "https://some_website.com"
+  "email": "user@example.com",
+  "password": "YourSecurePassword",
+  "phoneNumber": "+1234567890"
 }
-
 ```
 
+ - Response:
 
-## Read a Post by ID
-### Request
+ - Success message indicating that an OTP has been sent to the provided phone number.
+
+2. Phone Verification
+
+ - Endpoint:
 
 ``` http
-GET http://localhost:8080/api/news/1
+POST /api/auth/verify-phone
+```
 
-HTTP/1.1 200 OK
-Content-Type: application/json
+ - Request Body:
 
+```json
 {
-    "postId": 1,
-    "postedBy": "User",
-    "post": "This is a new post",
-    "link": "https://some_website.com",
-    "timeElapsed": "just now",
-    "votes": 0
+  "email": "user@example.com",
+  "otpCode": "123456"
 }
-
 ```
 
-## Update a Post by ID
-### Request
+- Response:
+
+ - Success message indicating that the phone number has been verified.
+
+3. User Login
+ - Endpoint:
 
 ``` http
+POST /api/auth/login
+```
 
-PUT http://localhost:8080/api/news/1
-Content-Type: application/json
+ - Request Body:
 
+```json
 {
-    "postedBy": "Updated_user",
-    "post": "Updated post content",
-    "link": "https://updated_website.com"
+  "email": "user@example.com",
+  "password": "YourSecurePassword"
 }
-
 ```
 
-## Delete a Post by ID
-### Request
+ - Response:
+
+ - JWT token to be used for authenticated requests.
+
+4. Get User Dashboard
+ - Endpoint:
 
 ``` http
 
-DELETE http://localhost:8080/api/news/1
-
-HTTP/1.1 200 OK
-Content-Type: text/plain
-
-"Post deleted"
-
+GET /api/user/dashboard
 ```
 
-## Change a Post by ID (Partial Update)
-### Request
+ - Headers:
 
-``` http
+ * Authorization: Bearer <JWT_TOKEN>
 
-PATCH http://localhost:8080/api/news/1
-Content-Type: application/json
+ - Response:
 
+```json
 {
-    "post": "Changed post content",
-    "link": "https://changed-example.com"
-}
-
-```
-
-## Get All Posts
-### Request
-
-``` http
-
-GET http://localhost:8080/api/news
-
-HTTP/1.1 200 OK
-Content-Type: application/json
-[
-        {
-            "postId": 1,
-            "postedBy": "User",
-            "post": "This is a new post",
-            "link": "https://some_website.com",
-            "timeElapsed": "just now",
-            "votes": 0
-        },
-        {
-            "More posts..."
-        }
-]
-
-```
-
-## Get Top Posts
-### Request
-* The response will be a page of size of the entities the user has configured in the application.property, see installation phase above. Posts "Hotness" is calculated 
-based on the post votes and number of hours past from the post creation(`timeElapsed`).
-
-``` http
-
-GET http://localhost:8080/api/news/top-posts
-
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-    "content": [
-        {
-            "postId": 1,
-            "postedBy": "User1",
-            "post": "This is a new post!",
-            "link": "https://some_website.com",
-            "timeElapsed": "just now",
-            "votes": 7
-        },
-{
-            "postId": 34,
-            "postedBy": "User",
-            "post": "This is a new post",
-            "link": "https://some_website.com",
-            "timeElapsed": "2 hours ago",
-            "votes": 24
-        },
-{
-            "postId": 6,
-            "postedBy": "User",
-            "post": "This is a new post",
-            "link": "https://some_website.com",
-            "timeElapsed": "1 hour ago",
-            "votes": 16
-        },
-        
-        {
-            "More posts..."
-        }
-    ],
-    "pageable": {
-        "pageSize": 30,
-        "pageNumber": 0
+  "email": "user@example.com",
+  "balance": 1000,
+  "transactions": [
+    {
+      "transactionId": "txn_123",
+      "senderEmail": "user@example.com",
+      "receiverEmail": "receiver@example.com",
+      "amount": -100,
+      "timestamp": "2023-09-01T12:34:56Z",
+      "type": "debit"
     }
+  ]
 }
-
 ```
 
-## downvote/upvote a Post by ID
-### Request
+5. Send Money
+
+ - Endpoint:
 
 ``` http
-
-PATCH http://localhost:8080/api/news/1/downvote
-PATCH http://localhost:8080/api/news/1/upvote
-
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-    "postId": 1,
-    "postedBy": "User",
-    "post": "This is a new post",
-    "link": "https://some_website.com",
-    "timeElapsed": "just now",
-    "votes": 1
-}
-
+POST /api/transactions/send
 ```
 
-# Learning resources
+ - Headers:
 
-- [Learn Java](https://www.youtube.com/watch?v=BGTx91t8q50&t=10332s)
-- [Learn Docker](https://docs.docker.com/get-started/overview/)
-- [MySQL Local DB](https://dev.mysql.com/doc/mysql-getting-started/en/)
-- [DTO Model mapper](https://www.geeksforgeeks.org/spring-boot-map-entity-to-dto-using-modelmapper/)
-- [Data base Indexing](https://www.baeldung.com/jpa-indexes)
-- [Spring RESTFul API](https://spring.io/guides/tutorials/rest/)
-- [Spring documentation](https://docs.spring.io/spring-framework/reference/index.html)
-- [Concurrent Collections](https://docs.oracle.com/javase/tutorial/essential/concurrency/collections.html)
-- [In Memory Cache in Java](https://crunchify.com/how-to-create-a-simple-in-memory-cache-in-java-lightweight-cache/)
-- [Constructor dependency injection](https://www.baeldung.com/constructor-injection-in-spring)
-- [Hacker News `top posts` algorithm](https://medium.com/hacking-and-gonzo/how-hacker-news-ranking-algorithm-works-1d9b0cf2c08d)
-- [Dockerize Spring boot and MySQL application](https://ilkerguldali.medium.com/1-4-lets-create-a-spring-boot-app-with-mysql-docker-docker-compose-8acaee3a2c4d)
+ * Authorization: Bearer <JWT_TOKEN>
+
+ - Request Body:
+
+```json
+{
+  "receiverEmail": "receiver@example.com",
+  "amount": 100
+}
+```
+
+ - Response:
+
+ * Success message with transaction details.
+
+6. Sign Out
+
+ - Endpoint:
+
+ * Frontend handles sign-out by removing JWT token from storage.
 
 
-# TODO
 
-- [ ] Implement comments count and posting of comments.
-- [ ] Improve the logic of the `timeElapsed` calculation.
-- [ ] Add restrictions for 1 upvote and 1 downvote per post.
-- [ ] Write benchmark tests to ensure efficiency and scalability of the API.
-- [x] Find a way to hide the secrets and still be able to docker compose the app.
-- [x] Implement a mechanism to update the cache of top posts when the data changes.
-- [ ] Implement database schema to make data base migration easy using `schema.sql`.
-- [ ] Integrate Spring Security to enhance API security and protect against vulnerabilities.
-- [ ] Write all the test cases needed to ensure edge cases are being taking care in the code.
-- [x] Explore alternative algorithms for fetching top posts, incorporating `post_id` for ranking.
-- [ ] Move String timeElapsed to the response DTO responsibility and have a simple long as elapsed time.
-- [ ] Handling lower-level database exceptions instead of using `if` statements in upvote/downvote logic.
+# Deployment to AWS (Optional)
+Given the budget constraints, you can utilize AWS Free Tier services.
+
+1. Set Up AWS Account:
+
+ - Sign up for AWS and configure IAM users and roles.
+2. Deploy Backend and Frontend:
+
+ - Use AWS Elastic Beanstalk or AWS EC2 instances to deploy your Docker containers.
+ - Alternatively, use AWS Elastic Container Service (ECS) with Fargate.
+
+3. Database Deployment:
+ - Use Amazon DocumentDB (MongoDB compatible) within the free tier limits.
+ - Ensure security groups and network settings allow your application to connect to the database.
+
+4. SMS Service Configuration:
+
+ - If Twilio's free trial is insufficient, consider using AWS SNS (Simple Notification Service) for sending SMS messages within the free tier.
+
+# Testing
+ - Unit Tests:
+ * Implement unit tests using frameworks like Jest for backend and Jasmine/Karma for frontend.
+ - Integration Tests:
+ *  Test interactions between different components of the application.
+ - Manual Testing:
+ * Use tools like Postman to test API endpoints.
+
+Learning Resources
+
+[Angular Documentation](https://angular.io/docs)
+[Express.js Documentation](https://expressjs.com/)
+[MongoDB Tutorial](https://docs.mongodb.com/manual/tutorial/)
+[Docker Getting Started](https://docs.docker.com/get-started/)
+[Kubernetes Basics](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
+[AWS Free Tier Information](https://aws.amazon.com/free/)
+[Swagger Documentation](https://swagger.io/docs/)
+[Twilio API Documentation](https://www.twilio.com/docs/usage/api)
 
 ## License:
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
