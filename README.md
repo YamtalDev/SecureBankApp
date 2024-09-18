@@ -7,7 +7,7 @@
 [![Angular CLI Version](https://img.shields.io/badge/Angular_CLI-v18.2.4-DD0031.svg?logo=angular&style=flat)](https://angular.io/)
 [![TypeScript Version](https://img.shields.io/badge/TypeScript-v5.6.2-3178C6.svg?logo=typescript&style=flat)](https://www.typescriptlang.org/)
 [![Express.js Version](https://img.shields.io/badge/Express.js-v4.21.0-000000.svg?logo=express&style=flat)](https://expressjs.com/)
-[![MongoDB Version](https://img.shields.io/badge/MongoDB-vv7.0.14-47A248.svg?logo=mongodb&style=flat)](https://www.mongodb.com/)
+[![MongoDB Version](https://img.shields.io/badge/MongoDB-v7.0.14-47A248.svg?logo=mongodb&style=flat)](https://www.mongodb.com/)
 [![Docker Version](https://img.shields.io/badge/Docker-v24.0.7-2496ED.svg?logo=docker&style=flat)](https://www.docker.com/)
 [![Minikube Version](https://img.shields.io/badge/Minikube-v1.34.0-326CE5.svg?logo=kubernetes&style=flat)](https://minikube.sigs.k8s.io/docs/)
 [![kubectl Version](https://img.shields.io/badge/kubectl-v1.31.0-326CE5.svg?logo=kubernetes&style=flat)](https://kubernetes.io/docs/reference/kubectl/)
@@ -464,14 +464,15 @@ Given the budget constraints, you can utilize AWS Free Tier services.
 
 Learning Resources
 
-[Angular Documentation](https://angular.io/docs)
-[Express.js Documentation](https://expressjs.com/)
-[MongoDB Tutorial](https://docs.mongodb.com/manual/tutorial/)
-[Docker Getting Started](https://docs.docker.com/get-started/)
-[Kubernetes Basics](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
-[AWS Free Tier Information](https://aws.amazon.com/free/)
-[Swagger Documentation](https://swagger.io/docs/)
-[Twilio API Documentation](https://www.twilio.com/docs/usage/api)
+[![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)](https://angular.io/docs)
+[![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://docs.mongodb.com/manual/tutorial/)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://docs.docker.com/get-started/)
+[![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
+[![AWS](https://img.shields.io/badge/AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)](https://aws.amazon.com/free/)
+[![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)](https://swagger.io/docs/)
+[![Twilio](https://img.shields.io/badge/Twilio-F22F46?style=for-the-badge&logo=twilio&logoColor=white)](https://www.twilio.com/docs/usage/api)
+
 
 ## License:
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
