@@ -130,7 +130,7 @@ Attributes:
 <br>
 
 <p align="center">
-  <img src="./art/architecture_diagram.png" alt="Architecture Diagram">
+  <img src="./design/diagram.png" alt="Architecture Diagram">
 </p>
 
 <br>
