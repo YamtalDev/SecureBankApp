@@ -5,13 +5,21 @@ import mongoose from 'mongoose';
 import User from '../models/User';
 import { IUser } from '../interfaces/IUser';
 
+// Create a new user
 export const createUserService = async (userData: Partial<IUser>): Promise<IUser> => {
-  const hashedPassword = await bcrypt.hash(userData.password!, 12);
+  const { email, password, phoneNumber } = userData;
+
+  const existingUser = await User.findOne({ email });
+  if (existingUser) {
+    throw new Error('Email already in use.');
+  }
+
+  const hashedPassword = await bcrypt.hash(password!, 12);
 
   const user = new User({
-    email: userData.email,
+    email,
     password: hashedPassword,
-    phoneNumber: userData.phoneNumber,
+    phoneNumber,
     isVerified: false,
     balance: 0,
   });

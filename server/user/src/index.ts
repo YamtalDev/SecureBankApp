@@ -1,9 +1,9 @@
-import dotenv from 'dotenv';
-dotenv.config(); // Load env variables early
-
-import express from 'express';
-import helmet from 'helmet';
 import cors from 'cors';
+import helmet from 'helmet';
+import express from 'express';
+
+import logger from './config/logger';
+import { config } from './config/config';
 import userRoutes from './routes/userRoutes';
 import { connectDB, closeDB } from './config/database';
 
@@ -14,32 +14,33 @@ app.use(express.json());
 app.use(helmet());
 app.use(cors());
 
+// Routes
 app.use('/api/users', userRoutes);
 
-const PORT = process.env.PORT || 5000;
-
 const startServer = async () => {
-  const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/userdb";
+  try {
+    await connectDB(config.mongodbUri);
 
-  // Pass MONGODB_URI to connectDB
-  await connectDB(MONGODB_URI);
-
-  const server = app.listen(PORT, () => {
-    console.log(`User Service running on port ${PORT}.`);
-  });
-
-  const gracefulShutdown = async () => {
-    console.log('Gracefully shutting down');
-
-    server.close(async () => {
-      console.log('HTTP server closed');
-      await closeDB();
-      process.exit(0);
+    const server = app.listen(config.port, () => {
+      logger.info(`User Service running on port ${config.port}.`);
     });
-  };
 
-  process.on('SIGTERM', gracefulShutdown);
-  process.on('SIGINT', gracefulShutdown);
+    const gracefulShutdown = async () => {
+      logger.info('Gracefully shutting down');
+
+      server.close(async () => {
+        logger.info('HTTP server closed');
+        await closeDB();
+        process.exit(0);
+      });
+    };
+
+    process.on('SIGTERM', gracefulShutdown);
+    process.on('SIGINT', gracefulShutdown);
+  } catch (err) {
+    logger.error('Failed to start server', err);
+    process.exit(1);
+  }
 };
 
 startServer();
