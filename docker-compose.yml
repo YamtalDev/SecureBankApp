@@ -1,17 +1,15 @@
 version: '3'
 services:
-  app:
-    build: .
+  user-service:
+    build: ./server/user
     ports:
-      - '3000:3000'
+      - '5000:5000'
     environment:
-      - MONGODB_URI=mongodb://mongo:27017/bankdb
-      - JWT_SECRET=your_jwt_secret
-      - TWILIO_ACCOUNT_SID=your_twilio_account_sid
-      - TWILIO_AUTH_TOKEN=your_twilio_auth_token
-      - TWILIO_PHONE_NUMBER=your_twilio_phone_number
+      - PORT=5000
+      - MONGODB_URI=mongodb://mongo:27017/userdb
     depends_on:
       - mongo
+
   mongo:
     image: mongo
     ports:
