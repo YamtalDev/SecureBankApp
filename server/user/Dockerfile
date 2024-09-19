@@ -1,21 +1,21 @@
-# Use Node.js LTS version
-FROM node:14
+# Use Node.js version 16 (with Alpine for a smaller image)
+FROM node:22-alpine
 
 # Set working directory
 WORKDIR /usr/src/app
 
-# Copy package files and install dependencies
+# Install dependencies
 COPY package*.json ./
-RUN npm install
+RUN npm install --production
 
-# Copy source code
+# Copy the entire source code into the container
 COPY . .
 
-# Build the TypeScript code
-RUN npm run build
+# Compile TypeScript to JavaScript
+RUN npx tsc
 
-# Expose the port
+# Expose the service port (5000 in your case)
 EXPOSE 5000
 
-# Start the app
-CMD [ "npm", "run", "serve" ]
+# Command to run the compiled JavaScript
+CMD ["node", "dist/index.js"]
