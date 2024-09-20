@@ -12,6 +12,7 @@ export const connectDB = async (MONGODB_URI: string): Promise<void> => {
     } else {
       logger.error('Unknown error connecting to MongoDB:', err);
     }
+
     throw err;
   }
 };

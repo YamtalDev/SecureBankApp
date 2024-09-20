@@ -1,7 +1,6 @@
-// middlewares/validationMiddleware.ts
-
+import createError from 'http-errors';
 import { Request, Response, NextFunction } from 'express';
-import { body, validationResult } from 'express-validator';
+import { body, param, validationResult } from 'express-validator';
 
 export const validateUser = [
   body('email')
@@ -31,8 +30,13 @@ export const validateUser = [
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       const errorMessages = errors.array().map((error) => error.msg);
-      return res.status(400).json({ errors: errorMessages });
+      // Instead of directly sending a response, throw an error to be caught by the centralized error handler
+      return next(createError(400, { errors: errorMessages }));
     }
     next();
   },
+];
+
+export const validateUserId = [
+  param('id').isMongoId().withMessage('Invalid user ID format.'),
 ];

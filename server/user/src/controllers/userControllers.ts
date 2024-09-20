@@ -1,5 +1,5 @@
-import { Request, Response } from 'express';
-import { validationResult } from 'express-validator';
+import { Request, Response, NextFunction } from 'express';
+
 import logger from '../config/logger';
 import {
   createUserService,
@@ -9,99 +9,80 @@ import {
   deleteUserService,
   patchUserService,
 } from '../services/userServices';
-import { toUserDTO } from '../dto/UserDTO';
+import { toUserDTO } from '../dto/UserResponseDTO';
 
-const handleError = (res: Response, error: any, statusCode: number = 500) => {
-  logger.warn(`Error: ${error.message}`, { stack: error.stack });
-  res.status(statusCode).json({ message: error.message || 'Internal server error.' });
-};
+export const createUser = async (req: Request, res: Response, next: NextFunction) => {
+  logger.info('Create User Request Received', { body: req.body });
 
-export const createUser = async (req: Request, res: Response) => {
   try {
-    logger.info('Create User Request Received', { body: req.body });
-
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      const errorMessages = errors.array().map((error) => error.msg);
-      logger.warn('Validation Errors:', { errors: errorMessages });
-      return res.status(400).json({ errors: errorMessages });
-    }
-
     const { email, password, phoneNumber } = req.body;
-
     const user = await createUserService({ email, password, phoneNumber });
     res.status(201).json({
       message: 'User created successfully.',
       user: toUserDTO(user),
     });
   } catch (error) {
-    handleError(res, error);
+    next(error);
   }
 };
 
-export const getUserById = async (req: Request, res: Response) => {
-  try {
-    logger.info(`Get User by ID Request Received: ${req.params.id}`);
+export const getUserById = async (req: Request, res: Response, next: NextFunction) => {
+  logger.info(`Get User by ID Request Received: ${req.params.id}`);
 
+  try {
     const user = await getUserByIdService(req.params.id);
-    if (!user) {
-      return res.status(404).json({ message: 'User not found.' });
-    }
-    res.json({ user: toUserDTO(user) });
+    res.json({ user: toUserDTO(user!) });
   } catch (error) {
-    handleError(res, error);
+    next(error);
   }
 };
 
-export const getAllUsers = async (req: Request, res: Response) => {
-  try {
-    logger.info('Get All Users Request Received');
+export const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
+  logger.info('Get All Users Request Received');
 
+  try {
     const users = await getAllUsersService();
     res.json({ users: users.map(toUserDTO) });
   } catch (error) {
-    handleError(res, error);
+    next(error);
   }
 };
 
-export const updateUser = async (req: Request, res: Response) => {
-  try {
-    logger.info(`Update User Request Received: ${req.params.id}`, { body: req.body });
+export const updateUser = async (req: Request, res: Response, next: NextFunction) => {
+  logger.info(`Update User Request Received: ${req.params.id}`, { body: req.body });
 
+  try {
     const updatedUser = await updateUserService(req.params.id, req.body);
-    if (!updatedUser) {
-      return res.status(404).json({ message: 'User not found.' });
-    }
-    res.json({ message: 'User updated successfully.', user: toUserDTO(updatedUser) });
+    res.json({
+      message: 'User updated successfully.',
+      user: toUserDTO(updatedUser!)
+    });
   } catch (error) {
-    handleError(res, error);
+    next(error);
   }
 };
 
-export const deleteUser = async (req: Request, res: Response) => {
-  try {
-    logger.info(`Delete User Request Received: ${req.params.id}`);
+export const deleteUser = async (req: Request, res: Response, next: NextFunction) => {
+  logger.info(`Delete User Request Received: ${req.params.id}`);
 
+  try {
     const deletedUser = await deleteUserService(req.params.id);
-    if (!deletedUser) {
-      return res.status(404).json({ message: 'User not found.' });
-    }
     res.json({ message: 'User deleted successfully.' });
   } catch (error) {
-    handleError(res, error);
+    next(error);
   }
 };
 
-export const patchUser = async (req: Request, res: Response) => {
-  try {
-    logger.info(`Patch User Request Received: ${req.params.id}`, { body: req.body });
+export const patchUser = async (req: Request, res: Response, next: NextFunction) => {
+  logger.info(`Patch User Request Received: ${req.params.id}`, { body: req.body });
 
+  try {
     const patchedUser = await patchUserService(req.params.id, req.body);
-    if (!patchedUser) {
-      return res.status(404).json({ message: 'User not found.' });
-    }
-    res.json({ message: 'User patched successfully.', user: toUserDTO(patchedUser) });
+    res.json({
+      message: 'User patched successfully.',
+      user: toUserDTO(patchedUser!)
+    });
   } catch (error) {
-    handleError(res, error);
+    next(error);
   }
 };

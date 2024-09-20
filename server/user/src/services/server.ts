@@ -4,6 +4,7 @@ import express from 'express';
 
 import userRoutes from '../routes/userRoutes';
 import rateLimiter from '../middlewares/rateLimiter';
+import errorHandler from '../middlewares/errorHandler';
 import { applySecurityMiddlewares } from '../middlewares/security';
 
 export const createServer = () => {
@@ -18,8 +19,9 @@ export const createServer = () => {
   app.use(rateLimiter);
   applySecurityMiddlewares(app);
   app.use(express.json());
-
+  
   app.use('/api/users', userRoutes);
+  app.use(errorHandler);
   
   return https.createServer(sslOptions, app);
 };

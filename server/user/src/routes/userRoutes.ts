@@ -8,15 +8,15 @@ import {
   patchUser,
 } from '../controllers/userControllers';
 
-import { validateUser } from '../middlewares/validationMiddleware';
+import { validateUser, validateUserId } from '../middlewares/validationMiddleware';
 
 const router = Router();
 
 router.post('/', validateUser, createUser);
 router.get('/', getAllUsers);
-router.get('/:id', getUserById);
-router.put('/:id', updateUser);
-router.patch('/:id', patchUser);
-router.delete('/:id', deleteUser);
+router.get('/:id', validateUserId, getUserById);
+router.put('/:id', validateUserId, validateUser, updateUser);
+router.patch('/:id', validateUserId, validateUser, patchUser);
+router.delete('/:id', validateUserId, deleteUser);
 
 export default router;
