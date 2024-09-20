@@ -1,3 +1,3 @@
 export interface PatchRequestDTO {
-    balance: number;
+    amount: number;
 }

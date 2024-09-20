@@ -6,7 +6,7 @@ export interface IUser extends Document {
   password: string;
   phoneNumber: string;
   isVerified?: boolean;
-  balance?: number;
+  balance: number;
   createdAt: Date;
   updatedAt: Date;
 }

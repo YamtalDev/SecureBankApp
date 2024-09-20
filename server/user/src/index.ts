@@ -1,7 +1,7 @@
-import { createServer } from './services/server';
-import { connectDB } from './config/database';
-import { config } from './config/config';
 import logger from './config/logger';
+import { config } from './config/config';
+import { connectDB } from './config/database';
+import { createServer } from './services/server';
 import { gracefulShutdown } from './services/shutdown';
 
 const startServer = async () => {

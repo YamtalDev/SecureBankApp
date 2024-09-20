@@ -4,9 +4,13 @@ import createError from 'http-errors';
 
 import User from '../models/User';
 import { IUser } from '../interfaces/IUser';
+import { PatchRequestDTO } from '../dto/PatchRequestDTO';
+import { UpdateRequestDTO } from '../dto/UpdateRequestDTO';
+import { UserRequestDTO } from '../dto/UserRequestDTO';
+
 
 // Create a new user
-export const createUserService = async (userData: Partial<IUser>): Promise<IUser> => {
+export const createUserService = async (userData: UserRequestDTO): Promise<IUser> => {
   const { email, password, phoneNumber } = userData;
 
   const existingUser = await User.findOne({ email });
@@ -14,7 +18,7 @@ export const createUserService = async (userData: Partial<IUser>): Promise<IUser
     throw createError(409, 'Email already in use.');
   }
 
-  const hashedPassword = await bcrypt.hash(password!, 12);
+  const hashedPassword = await bcrypt.hash(password, 12);
 
   const user = new User({
     email,
@@ -48,7 +52,7 @@ export const getAllUsersService = async (): Promise<IUser[]> => {
   }
 };
 
-export const updateUserService = async (userId: string, updateData: Partial<IUser>): Promise<IUser | null> => {
+export const updateUserService = async (userId: string, updateData: UpdateRequestDTO): Promise<IUser | null> => {
   if (!mongoose.Types.ObjectId.isValid(userId)) {
     throw createError(400, 'Invalid user ID.');
   }
@@ -78,6 +82,12 @@ export const deleteUserService = async (userId: string): Promise<IUser | null> =
   return deletedUser;
 };
 
-export const patchUserService = async (userId: string, patchData: Partial<IUser>): Promise<IUser | null> => {
-  return await updateUserService(userId, patchData);
+export const patchUserBalanceService = async (userId: string, patchData: PatchRequestDTO): Promise<IUser | null> => {
+  const user = await User.findById(userId);
+  if (!user) {
+      throw createError(404, 'User not found.');
+  }
+
+  user.balance += patchData.amount;
+  return await user.save();
 };

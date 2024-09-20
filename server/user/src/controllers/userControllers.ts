@@ -7,15 +7,16 @@ import {
   getAllUsersService,
   updateUserService,
   deleteUserService,
-  patchUserService,
+  patchUserBalanceService,
 } from '../services/userServices';
 import { toUserDTO } from '../dto/UserResponseDTO';
+import { UserRequestDTO } from '../dto/UserRequestDTO';
 
 export const createUser = async (req: Request, res: Response, next: NextFunction) => {
   logger.info('Create User Request Received', { body: req.body });
 
   try {
-    const { email, password, phoneNumber } = req.body;
+    const { email, password, phoneNumber }: UserRequestDTO = req.body;
     const user = await createUserService({ email, password, phoneNumber });
     res.status(201).json({
       message: 'User created successfully.',
@@ -77,12 +78,9 @@ export const patchUser = async (req: Request, res: Response, next: NextFunction)
   logger.info(`Patch User Request Received: ${req.params.id}`, { body: req.body });
 
   try {
-    const patchedUser = await patchUserService(req.params.id, req.body);
-    res.json({
-      message: 'User patched successfully.',
-      user: toUserDTO(patchedUser!)
-    });
-  } catch (error) {
+    const updatedUser = await patchUserBalanceService(req.params.id, req.body);
+    res.json({ message: 'Balance updated successfully.', user: toUserDTO(updatedUser!) });
+} catch (error) {
     next(error);
-  }
+}
 };

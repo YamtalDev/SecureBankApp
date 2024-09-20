@@ -14,6 +14,6 @@ export const toUserDTO = (user: IUser): UserDTO => {
     email: user.email,
     phoneNumber: user.phoneNumber,
     isVerified: user.isVerified ?? false,
-    balance: user.balance ?? 0,
+    balance: user.balance,
   };
 };

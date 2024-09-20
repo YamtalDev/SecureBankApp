@@ -9,7 +9,6 @@ const errorHandler = (err: any, req: Request, res: Response, next: NextFunction)
   if (isHttpError(err)) {
     logger.warn(`Error: ${err.message}`);
     return res.status(err.statusCode).json({
-      status: err.statusCode,
       message: err.message,
     });
   }

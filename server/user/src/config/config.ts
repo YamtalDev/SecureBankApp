@@ -1,16 +1,19 @@
 import Joi from 'joi';
 import dotenv from 'dotenv';
-
 import logger from './logger';
 
 dotenv.config();
-
 const envSchema = Joi.object({
-  PORT: Joi.number().default(5000),
-  MONGODB_URI: Joi.string().default("mongodb://localhost:27017/userdb").uri().required(),
+  MONGODB_URI: Joi.string()
+    .uri()
+    .default(process.env.MONGODB_URI || process.env.DEFAULT_MONGODB_URI)
+    .messages({ 'any.required': 'MONGODB_URI is required. Provide it in .env or via the environment variables.' }),
+
+  PORT: Joi.number()
+    .default(process.env.PORT || process.env.DEFAULT_PORT || 5000),
 }).unknown();
 
-const { error, value: envVars } = envSchema.validate(process.env);
+const { error, value: envVars } = envSchema.validate(process.env, { abortEarly: false });
 
 if (error) {
   logger.error(`Configuration validation error: ${error.message}`);
