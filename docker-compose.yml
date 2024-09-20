@@ -1,20 +1,24 @@
 services:
   user-service:
     build:
-      context: ./server/user  # Point to the server/user folder as the build context
-      dockerfile: Dockerfile  # Dockerfile is located in server/user, no need for relative path
+      context: ./server/user
+      dockerfile: Dockerfile
     ports:
-      - "5000:5000"
+      - "443:5000"
     environment:
-      - MONGODB_URI=mongodb://user-db:27017/users
+      - MONGODB_URI=mongodb://root:example@user-db:27017/users?authSource=admin
     depends_on:
-      - user-db
+      user-db:
+        condition: service_healthy
     networks:
       - user-network
     volumes:
-      - ./server/user:/usr/src/app  # Mount only the user service folder
-      - /usr/src/app/node_modules  # Prevent overwriting node_modules
-    command: ts-node src/index.ts  # Use ts-node to run src/index.ts
+      - ./server/user:/usr/src/app
+      - /usr/src/app/node_modules
+      - /usr/src/app/dist
+      - ./server/user/cert.pem:/usr/src/app/cert.pem
+      - ./server/user/key.pem:/usr/src/app/key.pem
+    command: ["node", "dist/index.js"]
     deploy:
       resources:
         limits:
@@ -34,7 +38,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: example
     command: ["mongod", "--quiet", "--logpath", "/dev/null"]
     healthcheck:
-      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
       interval: 10s
       timeout: 5s
       retries: 5

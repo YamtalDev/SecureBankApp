@@ -1,3 +1,5 @@
+import https from 'https';
+import fs from 'fs';
 import cors from 'cors';
 import helmet from 'helmet';
 import express from 'express';
@@ -6,6 +8,12 @@ import logger from './config/logger';
 import { config } from './config/config';
 import userRoutes from './routes/userRoutes';
 import { connectDB, closeDB } from './config/database';
+
+// Load SSL certificate and key
+const sslOptions = {
+  key: fs.readFileSync('./key.pem'),  // Ensure path is correct
+  cert: fs.readFileSync('./cert.pem'),
+};
 
 const app = express();
 
@@ -21,8 +29,8 @@ const startServer = async () => {
   try {
     await connectDB(config.mongodbUri);
 
-    const server = app.listen(config.port, () => {
-      logger.info(`User Service running on port ${config.port}.`);
+    const server = https.createServer(sslOptions, app).listen(config.port, () => {
+      logger.info(`User Service running securely on HTTPS port ${config.port}.`);
     });
 
     const gracefulShutdown = async () => {
