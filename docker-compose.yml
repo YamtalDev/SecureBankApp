@@ -1,21 +1,47 @@
-version: '3'
 services:
   user-service:
-    build: ./server/user
+    build:
+      context: ./server/user  # Point to the server/user folder as the build context
+      dockerfile: Dockerfile  # Dockerfile is located in server/user, no need for relative path
     ports:
-      - '5000:5000'
+      - "5000:5000"
     environment:
-      - PORT=5000
-      - MONGODB_URI=mongodb://mongo:27017/userdb
+      - MONGODB_URI=mongodb://user-db:27017/users
     depends_on:
-      - mongo
-
-  mongo:
-    image: mongo
-    ports:
-      - '27017:27017'
+      - user-db
+    networks:
+      - user-network
     volumes:
-      - mongo-data:/data/db
+      - ./server/user:/usr/src/app  # Mount only the user service folder
+      - /usr/src/app/node_modules  # Prevent overwriting node_modules
+    command: ts-node src/index.ts  # Use ts-node to run src/index.ts
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+
+  user-db:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    networks:
+      - user-network
+    volumes:
+      - user-db-data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    command: ["mongod", "--quiet", "--logpath", "/dev/null"]
+    healthcheck:
+      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  user-network:
+    driver: bridge
 
 volumes:
-  mongo-data:
+  user-db-data:

@@ -17,3 +17,5 @@ Write unit tests and integration tests to ensure your controllers behave as expe
 DTO (UserDTO.ts):
 Make sure you're strictly validating user inputs. If not already, you might want to use a validation library like class-validator to enforce data constraints on your DTO (e.g., email format, password length, etc.).
 
+Validation of Environment Variables and separate it to config.
+Consider using a validation library like joi to validate your environment variables.
