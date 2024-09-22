@@ -1,5 +1,5 @@
 # Logs
-logs
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -132,6 +132,6 @@ dist
 
 
 # SSL Certificates
-server/user/key.pem
-server/user/cert.pem
-server/user/csr.pem
+server/user/ssl/key.pem
+server/user/ssl/cert.pem
+server/user/ssl/csr.pem
