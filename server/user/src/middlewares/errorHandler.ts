@@ -3,7 +3,6 @@ import { isHttpError } from 'http-errors';
 import logger from '../config/logger';
 
 const errorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
-  
   res.setHeader('Content-Type', 'application/json');
   
   if (isHttpError(err)) {

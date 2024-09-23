@@ -23,5 +23,7 @@ export const createServer = () => {
   app.use('/api/users', userRoutes);
   app.use(errorHandler);
   
-  return https.createServer(sslOptions, app);
+  const httpsServer = https.createServer(sslOptions, app);
+  
+  return { app, httpsServer };
 };

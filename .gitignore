@@ -135,3 +135,5 @@ dist
 server/user/ssl/key.pem
 server/user/ssl/cert.pem
 server/user/ssl/csr.pem
+
+.eslintrc.js

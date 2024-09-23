@@ -4,6 +4,11 @@ import logger from './logger';
 
 dotenv.config();
 const envSchema = Joi.object({
+  NODE_ENV: Joi.string()
+    .valid('development', 'production', 'test')
+    .default('development')
+    .messages({ 'any.only': 'NODE_ENV must be one of development, production, or test.' }),
+
   MONGODB_URI: Joi.string()
     .uri()
     .default(process.env.MONGODB_URI || process.env.DEFAULT_MONGODB_URI)
@@ -23,4 +28,5 @@ if (error) {
 export const config = {
   port: envVars.PORT,
   mongodbUri: envVars.MONGODB_URI,
+  nodeEnv: envVars.NODE_ENV,
 };

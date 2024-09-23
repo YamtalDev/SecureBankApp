@@ -19,16 +19,11 @@ export const validateUser = [
 
   body('password')
     .exists().withMessage('Password is required')
-    .isLength({ min: 6 })
-    .withMessage('Password must be at least 6 characters long')
-    .matches(/^(?=.*[a-z])/)
-    .withMessage('Password must contain at least one lowercase letter')
-    .matches(/^(?=.*[A-Z])/)
-    .withMessage('Password must contain at least one uppercase letter')
-    .matches(/^(?=.*\d)/)
-    .withMessage('Password must contain at least one digit')
-    .matches(/^(?=.*[\W_])/)
-    .withMessage('Password must contain at least one special character')
+    .isLength({ min: 6 }).withMessage('Must be at least 6 characters long')
+    .matches(/^(?=.*[a-z])/).withMessage('Must contain at least one lowercase letter')
+    .matches(/^(?=.*[A-Z])/).withMessage('Must contain at least one uppercase letter')
+    .matches(/^(?=.*\d)/).withMessage('Must contain at least one digit')
+    .matches(/^(?=.*[\W_])/).withMessage('Must contain at least one special character `!, @, $`')
     .trim(),
 
   body('phoneNumber')
@@ -46,8 +41,7 @@ export const validateUserId = [
 export const validatePatchData = [
   body('amount')
     .exists().withMessage('Amount is required')
-    .isFloat({ min: -Infinity })
-    .withMessage('Amount must be a valid number')
+    .isFloat({ min: -Infinity }).withMessage('Amount must be a valid number')
     .toFloat(),
   (req: Request, res: Response, next: NextFunction) => handleValidationErrors(req, next),
 ];

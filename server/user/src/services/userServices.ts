@@ -8,8 +8,6 @@ import { PatchRequestDTO } from '../dto/PatchRequestDTO';
 import { UpdateRequestDTO } from '../dto/UpdateRequestDTO';
 import { UserRequestDTO } from '../dto/UserRequestDTO';
 
-
-// Create a new user
 export const createUserService = async (userData: UserRequestDTO): Promise<IUser> => {
   const { email, password, phoneNumber } = userData;
 
