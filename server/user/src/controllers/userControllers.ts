@@ -80,7 +80,7 @@ export const patchUser = async (req: Request, res: Response, next: NextFunction)
   try {
     const updatedUser = await patchUserBalanceService(req.params.id, req.body);
     res.json({ message: 'Balance updated successfully.', user: toUserDTO(updatedUser!) });
-} catch (error) {
-    next(error);
-}
+  } catch (error) {
+      next(error);
+  }
 };
