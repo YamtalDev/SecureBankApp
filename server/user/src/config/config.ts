@@ -11,7 +11,7 @@ const envSchema = Joi.object({
 
   MONGODB_URI: Joi.string()
     .uri()
-    .default(process.env.MONGODB_URI || process.env.DEFAULT_MONGODB_URI)
+    .default(process.env.MONGODB_URI || "mongodb://localhost:27017/users")
     .messages({ 'any.required': 'MONGODB_URI is required. Provide it in .env or via the environment variables.' }),
 
   PORT: Joi.number()

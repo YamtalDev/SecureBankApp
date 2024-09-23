@@ -1,4 +1,5 @@
 import { createLogger, format, transports } from 'winston';
+import { config } from './config';
 import path from 'path';
 
 const { combine, timestamp, printf, errors, colorize } = format;
@@ -10,13 +11,11 @@ const logFormat = printf(({ level, message, timestamp, stack }) => {
 const logger = createLogger({
   level: 'info',
   format: combine(
-    colorize(),
     timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
     errors({ stack: true }),
     logFormat
   ),
   transports: [
-    new transports.Console(),
     new transports.File({
       filename: path.join(__dirname, '../../logs/app.log'),
       level: 'info',
@@ -25,5 +24,14 @@ const logger = createLogger({
     })
   ],
 });
+
+if (config.nodeEnv === 'development') {
+  logger.add(new transports.Console({
+    format: combine(
+      colorize(),
+      logFormat
+    )
+  }));
+}
 
 export default logger;
