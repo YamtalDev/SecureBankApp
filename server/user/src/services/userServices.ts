@@ -4,9 +4,9 @@ import createError from 'http-errors';
 
 import User from '../models/User';
 import { IUser } from '../interfaces/IUser';
+import { UserRequestDTO } from '../dto/UserRequestDTO';
 import { PatchRequestDTO } from '../dto/PatchRequestDTO';
 import { UpdateRequestDTO } from '../dto/UpdateRequestDTO';
-import { UserRequestDTO } from '../dto/UserRequestDTO';
 
 export const createUserService = async (userData: UserRequestDTO): Promise<IUser> => {
   const { email, password, phoneNumber } = userData;

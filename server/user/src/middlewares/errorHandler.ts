@@ -1,5 +1,6 @@
-import { NextFunction, Request, Response } from 'express';
 import { isHttpError } from 'http-errors';
+import { NextFunction, Request, Response } from 'express';
+
 import logger from '../config/logger';
 
 const errorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {

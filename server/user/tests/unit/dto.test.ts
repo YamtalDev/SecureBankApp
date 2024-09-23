@@ -1,9 +1,10 @@
+import { Types } from 'mongoose';
+
+import { IUser } from '../../src/interfaces/IUser';
 import { UserRequestDTO } from '../../src/dto/UserRequestDTO';
 import { PatchRequestDTO } from '../../src/dto/PatchRequestDTO';
 import { UpdateRequestDTO } from '../../src/dto/UpdateRequestDTO';
 import { toUserDTO, UserDTO } from '../../src/dto/UserResponseDTO';
-import { IUser } from '../../src/interfaces/IUser';
-import { Types } from 'mongoose'; // To use ObjectId for mock _id
 
 describe('DTO Module', () => {
   describe('PatchRequestDTO', () => {
@@ -69,7 +70,6 @@ describe('DTO Module', () => {
         email: 'test@example.com',
         password: 'Password123!',
         phoneNumber: '+123456789',
-        // `isVerified` is missing
         balance: 1000,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -77,7 +77,7 @@ describe('DTO Module', () => {
 
       const userDTO: UserDTO = toUserDTO(mockUser as IUser);
 
-      expect(userDTO.isVerified).toBe(false); // Default to false
+      expect(userDTO.isVerified).toBe(false);
     });
   });
 });

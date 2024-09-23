@@ -1,9 +1,9 @@
-import { Request, Response, NextFunction } from 'express';
-import { validationResult } from 'express-validator';
-import { validateUser, validateUserId, validatePatchData } from '../../src/middlewares/validationMiddleware';
 import createError from 'http-errors';
+import { validationResult } from 'express-validator';
+import { Request, Response, NextFunction } from 'express';
 
-// Mocking modules
+import { validateUser, validateUserId, validatePatchData } from '../../src/middlewares/validationMiddleware';
+
 jest.mock('express-validator', () => ({
   ...jest.requireActual('express-validator'),
   validationResult: jest.fn(),

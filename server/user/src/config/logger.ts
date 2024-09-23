@@ -1,6 +1,7 @@
-import { createLogger, format, transports } from 'winston';
-import { config } from './config';
 import path from 'path';
+import { createLogger, format, transports } from 'winston';
+
+import { config } from './config';
 
 const { combine, timestamp, printf, errors, colorize } = format;
 

@@ -9,7 +9,6 @@ const startServer = async () => {
     await connectDB(config.mongodbUri);
     const { app, httpsServer } = createServer();
 
-    // Start listening on the configured port
     httpsServer.listen(config.port, () => {
       logger.info(`User Service running securely on HTTPS port ${config.port}.`);
     });
@@ -24,10 +23,8 @@ const startServer = async () => {
   }
 };
 
-// Start the server if not running in test environment
 if (config.nodeEnv !== 'test') {
   startServer();
 }
 
-// Export the app for testing
 export default startServer;

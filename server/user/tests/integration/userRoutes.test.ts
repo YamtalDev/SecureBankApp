@@ -1,8 +1,9 @@
-import request from 'supertest';
-import { Express } from 'express';
 import mongoose from 'mongoose';
-import startServer from '../../src/index';
+import request from 'supertest';
 import { Types } from 'mongoose';
+import { Express } from 'express';
+
+import startServer from '../../src/index';
 
 let app: Express;
 

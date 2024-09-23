@@ -9,8 +9,6 @@ import { applySecurityMiddlewares } from '../middlewares/security';
 
 export const createServer = () => {
   const app = express();
-
-  // SSL Configuration
   const sslOptions = {
     key: fs.readFileSync('./ssl/key.pem'),
     cert: fs.readFileSync('./ssl/cert.pem'),

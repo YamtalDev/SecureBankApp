@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import { Schema, model } from 'mongoose';
+
 import { IUser } from '../interfaces/IUser';
 
 const userSchema = new Schema<IUser>(
@@ -25,7 +26,6 @@ userSchema.pre('save', async function (next) {
   }
 });
 
-// Exclude password from toJSON output
 userSchema.methods.toJSON = function () {
   const userObject = this.toObject();
   delete userObject.password;
