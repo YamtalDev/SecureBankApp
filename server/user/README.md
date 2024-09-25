@@ -1,13 +1,3 @@
-Certainly! I've updated your README to include:
-
-- Instructions on how to run the service and tests using the npm scripts you've provided.
-- Default values for environment variables.
-- Updated the "Running the Service" and "Testing" sections to reflect the npm scripts.
-
-Below is the updated README in raw markdown:
-
----
-
 # User Micro Service
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -394,7 +384,3 @@ A `docker-compose.yml` file is provided to run the service along with a MongoDB 
 ---
 
 For any questions or support, please contact [tal.aharon.work@gmail.com](mailto:tal.aharon.work@gmail.c).
-
----
-
-I hope this updated README meets your requirements. If you need any further adjustments, please let me know!
