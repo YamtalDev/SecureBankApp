@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import request from 'supertest';
 import { Types } from 'mongoose';
 import { Express } from 'express';
+import { config } from '../../src/config/config'
 
 import startServer from '../../src/index';
 
