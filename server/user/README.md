@@ -58,7 +58,7 @@ This is a Node.js and TypeScript-based microservice for user registration in a b
 
 <br>
 
-<p align="center">
+<p align="left">
   <img src="../../design/diagram.png" alt="Architecture Diagram">
 </p>
 
