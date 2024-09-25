@@ -57,6 +57,19 @@ This is a Node.js and TypeScript-based microservice for user registration in a b
 - **Docker** (optional, for containerization)
 - **Docker Compose** (optional, for orchestrating containers)
 
+
+
+## Design
+
+<br>
+
+<p align="center">
+  <img src="./design/diagram.png" alt="Architecture Diagram">
+</p>
+
+<br>
+
+
 ## Installation
 
 ### Cloning the Repository

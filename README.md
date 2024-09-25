@@ -127,7 +127,6 @@ Attributes:
   - Secure coding practices to protect sensitive data.
   - Use of environment variables for configuration.
 
-
 # Usage
 
 To utilize this web banking application, follow these steps:
