@@ -26,7 +26,13 @@ if (error) {
   process.exit(1);
 }
 
-export const config = {
+interface AppConfig {
+  port: number;
+  mongodbUri: string;
+  nodeEnv: string;
+}
+
+export const config: AppConfig = {
   port: envVars.PORT,
   mongodbUri: envVars.MONGODB_URI,
   nodeEnv: envVars.NODE_ENV,

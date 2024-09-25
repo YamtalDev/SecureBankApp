@@ -18,7 +18,7 @@ const startServer = async () => {
     process.on('SIGINT', gracefulShutdown(httpsServer));
     return app;
   } catch (err) {
-    logger.error('Failed to start server', err);
+    logger.error('Failed to start server: ${err.message}', err);
     process.exit(1);
   }
 };
