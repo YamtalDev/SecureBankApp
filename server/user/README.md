@@ -62,8 +62,9 @@ This is a Node.js and TypeScript-based microservice for user registration in a b
 ### Cloning the Repository
 
 ```bash
-git clone https://github.com/yourusername/user-registration-microservice.git
-cd user-registration-microservice/server/user
+git clone https://github.com/YamtalDev/SecureBankApp.git
+cd SecureBankApp/server/user
+
 ```
 
 ### Installing Dependencies
@@ -292,22 +293,6 @@ The service exposes a RESTful API at `https://localhost:5000/api/users`. All res
     }
     ```
 
-## Tools and Technologies Used
-
-- **Node.js**: JavaScript runtime environment.
-- **TypeScript**: Superset of JavaScript for type safety.
-- **Express.js**: Web framework for Node.js.
-- **MongoDB**: NoSQL database.
-- **Mongoose**: MongoDB object modeling tool.
-- **bcrypt**: Library for hashing passwords.
-- **Jest**: Testing framework.
-- **Supertest**: HTTP assertions for testing.
-- **Winston**: Logging library.
-- **Helmet**: Security middleware for HTTP headers.
-- **Cors**: Middleware for enabling Cross-Origin Resource Sharing.
-- **Docker**: Containerization platform.
-- **Docker Compose**: Tool for defining and running multi-container Docker applications.
-
 ## Deployment with Docker and Docker Compose
 
 ### Building the Docker Image
@@ -317,43 +302,20 @@ Ensure Docker is installed and running on your machine.
 1. **Build the Docker image:**
 
    ```bash
-   docker build -t user-registration-service .
+   docker build .
    ```
 
 2. **Run the Docker container:**
 
    ```bash
-   docker run -p 5000:5000 --env-file .env user-registration-service
+   docker run -p 5000:5000 --env-file .env user
    ```
 
 ### Using Docker Compose
 
 A `docker-compose.yml` file is provided to run the service along with a MongoDB instance.
 
-1. **Ensure the `docker-compose.yml` file looks like this:**
-
-   ```yaml
-   version: '3'
-   services:
-     user-service:
-       build: .
-       ports:
-         - '5000:5000'
-       env_file:
-         - .env
-       depends_on:
-         - mongo
-     mongo:
-       image: mongo:latest
-       ports:
-         - '27017:27017'
-       volumes:
-         - mongo-data:/data/db
-   volumes:
-     mongo-data:
-   ```
-
-2. **Run Docker Compose:**
+1. **Run Docker Compose:**
 
    ```bash
    docker-compose up --build
@@ -377,12 +339,6 @@ The service is designed with the following infrastructure components:
 - **Testing**: Includes unit and integration tests to ensure reliability.
 - **Docker**: Containerization for consistent deployment environments.
 - **Docker Compose**: Orchestrates multi-container setups (e.g., service and database).
-
-## Additional Resources
-
-- **API Documentation**: Use tools like Postman or Swagger to interact with the API.
-- **Environment Variables**: Securely manage sensitive information using `.env` files or environment variables.
-- **Contribution Guidelines**: If you wish to contribute, please fork the repository and submit a pull request.
 
 ---
 

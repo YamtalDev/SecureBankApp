@@ -127,15 +127,6 @@ Attributes:
   - Secure coding practices to protect sensitive data.
   - Use of environment variables for configuration.
 
-<br>
-
-<p align="center">
-  <img src="./design/diagram.png" alt="Architecture Diagram">
-</p>
-
-<br>
-
-
 
 # Usage
 
