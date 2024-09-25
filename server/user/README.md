@@ -1,3 +1,13 @@
+Certainly! I've updated your README to include:
+
+- Instructions on how to run the service and tests using the npm scripts you've provided.
+- Default values for environment variables.
+- Updated the "Running the Service" and "Testing" sections to reflect the npm scripts.
+
+Below is the updated README in raw markdown:
+
+---
+
 # User Micro Service
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -19,11 +29,9 @@
 [![Dotenv Version](https://img.shields.io/badge/Dotenv-v16.3.1-ECD53F.svg?logo=dotenv&style=flat)](https://github.com/motdotla/dotenv)
 [![Express Rate Limit Version](https://img.shields.io/badge/express--rate--limit-v6.7.0-8c8c8c.svg?logo=express&style=flat)](https://github.com/nfriedly/express-rate-limit)
 [![Http-Errors Version](https://img.shields.io/badge/http--errors-v2.0.0-FF6347.svg)](https://github.com/jshttp/http-errors)
-[![Express.js Version](https://img.shields.io/badge/Express.js-v4.21.0-000000.svg?logo=express&style=flat)](https://expressjs.com/)
-
-
 
 ## Service Overview
+
 This is a Node.js and TypeScript-based microservice for user registration in a banking application. It provides a RESTful API for creating, retrieving, updating, and deleting user accounts, as well as updating user balances.
 
 ## Table of Contents
@@ -43,7 +51,6 @@ This is a Node.js and TypeScript-based microservice for user registration in a b
     - [Update User](#update-user)
     - [Delete User](#delete-user)
     - [Update User Balance](#update-user-balance)
-- [Tools and Technologies Used](#tools-and-technologies-used)
 - [Deployment with Docker and Docker Compose](#deployment-with-docker-and-docker-compose)
 - [Infrastructure](#infrastructure)
 - [Additional Resources](#additional-resources)
@@ -57,8 +64,6 @@ This is a Node.js and TypeScript-based microservice for user registration in a b
 - **Docker** (optional, for containerization)
 - **Docker Compose** (optional, for orchestrating containers)
 
-
-
 ## Design
 
 <br>
@@ -69,7 +74,6 @@ This is a Node.js and TypeScript-based microservice for user registration in a b
 
 <br>
 
-
 ## Installation
 
 ### Cloning the Repository
@@ -77,7 +81,6 @@ This is a Node.js and TypeScript-based microservice for user registration in a b
 ```bash
 git clone https://github.com/YamtalDev/SecureBankApp.git
 cd SecureBankApp/server/user
-
 ```
 
 ### Installing Dependencies
@@ -98,39 +101,91 @@ PORT=5000
 MONGODB_URI=mongodb://localhost:27017/users
 ```
 
+- `NODE_ENV`: The environment in which the app is running (e.g., development, production).
+- `PORT`: The port on which the server will run. Default is `5000`.
+- `MONGODB_URI`: The URI for connecting to MongoDB. Default is `mongodb://localhost:27017/users`.
+
 You can adjust the values as needed for your environment.
 
 ## Running the Service
 
-To start the service in development mode:
+### Starting the Service in Development Mode
+
+To start the service with hot reloading during development:
 
 ```bash
 npm run dev
 ```
 
-This script typically uses `nodemon` for hot reloading during development.
+This script uses `ts-node-dev` to watch for file changes and reload the server automatically.
 
-To start the service in production mode:
+### Starting the Service in Production Mode
+
+First, build the TypeScript code:
+
+```bash
+npm run build
+```
+
+Then start the server:
 
 ```bash
 npm start
 ```
 
-This script compiles the TypeScript code and runs the compiled JavaScript using `node`.
+This compiles the TypeScript code and runs the compiled JavaScript using `node`.
+
+### Starting MongoDB
+
+If MongoDB is not already running on your machine, you can start it using the provided npm script:
+
+```bash
+npm run start-mongo
+```
+
+**Note:** This script assumes you have MongoDB installed and that you can start it using `sudo systemctl start mongod`. Adjust the script in `package.json` if your setup is different.
 
 ## Testing
 
-To run unit and integration tests:
+### Running All Tests
+
+To run all unit and integration tests:
 
 ```bash
 npm test
 ```
 
+### Running Unit Tests
+
+```bash
+npm run test:unit
+```
+
+### Running Integration Tests
+
+```bash
+npm run test:integration
+```
+
+### Watching Tests
+
+To watch tests and rerun them on code changes:
+
+```bash
+npm run test:watch
+```
+
+### Generating Test Coverage Report
+
 To generate a test coverage report:
 
 ```bash
-npm run coverage
+npm run test:coverage
 ```
+
+The coverage report will be available in the `coverage` directory.
+
+**Note:** The testing scripts assume that MongoDB can be started and stopped using the provided `start-mongo` and `stop-mongo` scripts. Adjust these scripts if your environment requires different commands.
 
 ## API Documentation
 
@@ -315,13 +370,13 @@ Ensure Docker is installed and running on your machine.
 1. **Build the Docker image:**
 
    ```bash
-   docker build .
+   docker build -t user-service .
    ```
 
 2. **Run the Docker container:**
 
    ```bash
-   docker run -p 5000:5000 --env-file .env user
+   docker run -p 5000:5000 --env-file .env user-service
    ```
 
 ### Using Docker Compose
@@ -336,25 +391,10 @@ A `docker-compose.yml` file is provided to run the service along with a MongoDB 
 
    This command builds the Docker images and starts the containers.
 
-## Infrastructure
+---
 
-The service is designed with the following infrastructure components:
-
-- **Express.js Server**: Handles HTTP requests and routes.
-- **MongoDB Database**: Stores user data securely.
-- **SSL/TLS**: Uses HTTPS for secure communication.
-- **Middleware**:
-  - **Validation**: Validates incoming request data.
-  - **Security**: Applies security best practices using Helmet and Cors.
-  - **Error Handling**: Centralized error handling for consistent responses.
-  - **Rate Limiting**: Prevents abuse by limiting the number of requests.
-- **Logging**: Uses Winston for logging important events and errors.
-- **Testing**: Includes unit and integration tests to ensure reliability.
-- **Docker**: Containerization for consistent deployment environments.
-- **Docker Compose**: Orchestrates multi-container setups (e.g., service and database).
+For any questions or support, please contact [tal.aharon.work@gmail.com](mailto:tal.aharon.work@gmail.c).
 
 ---
 
-For any questions or support, please contact [your.email@example.com](mailto:your.email@example.com).
-
----
+I hope this updated README meets your requirements. If you need any further adjustments, please let me know!
