@@ -3,7 +3,7 @@ module.exports = {
   testEnvironment: 'node',
   verbose: true,
   testTimeout: 30000,
-  collectCoverage: true,
+  collectCoverage: false,
   coverageDirectory: 'coverage',
   testMatch: ['**/tests/**/*.test.ts'],
   moduleFileExtensions: ['ts', 'js', 'json', 'node'],

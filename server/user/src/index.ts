@@ -13,10 +13,9 @@ const startServer = async () => {
       logger.info(`User Service running securely on HTTPS port ${config.port}.`);
     });
 
-
     process.on('SIGTERM', gracefulShutdown(httpsServer));
     process.on('SIGINT', gracefulShutdown(httpsServer));
-    return app;
+    return { app, httpsServer };
   } catch (err) {
     logger.error('Failed to start server: ${err.message}', err);
     process.exit(1);

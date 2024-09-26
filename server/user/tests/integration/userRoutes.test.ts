@@ -1,33 +1,26 @@
-import mongoose from 'mongoose';
+import mongoose, { Types } from 'mongoose';
 import request from 'supertest';
-import { Types } from 'mongoose';
 import { Express } from 'express';
-import { config } from '../../src/config/config'
-
-import startServer from '../../src/index';
+import { MongoMemoryServer } from 'mongodb-memory-server';
 
 let app: Express;
-
-async function connectToDatabase() {
-  if (mongoose.connection.readyState === 0) {
-    try {
-      await mongoose.connect('mongodb://localhost:27017/yourTestDb');
-    } catch (err) {
-      throw err;
-    }
-  }
-}
+let mongoServer: MongoMemoryServer;
 
 beforeAll(async () => {
-  app = await startServer();
-  await connectToDatabase();
+  mongoServer = await MongoMemoryServer.create();
+  const uri = mongoServer.getUri();
+  process.env.MONGODB_URI = uri;
+
+  const { createServer } = await import('../../src/services/server');
+  app = createServer().app;
+
+  await mongoose.connect(uri);
 });
 
 afterAll(async () => {
-  if (mongoose.connection.readyState === 1) {
-    await mongoose.connection.dropDatabase();
-    await mongoose.disconnect();
-  }
+  await mongoose.connection.dropDatabase();
+  await mongoose.disconnect();
+  await mongoServer.stop();
 });
 
 beforeEach(async () => {

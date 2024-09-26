@@ -3,23 +3,15 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-  "test": "NODE_ENV=test jest --config jest.config.js --silent",
-  "watch": "NODE_ENV=test jest --watchAll --silent",
-  "coverage": "NODE_ENV=test jest --coverage --silent",
-  "unit": "NODE_ENV=test jest --config jest.config.js --testPathPattern=tests/unit --detectOpenHandles --forceExit --silent",
-  "integration": "NODE_ENV=test jest --config jest.config.js --testPathPattern=tests/integration --silent",
-  "start": "NODE_ENV=production node dist/index.js --silent",
-  "dev": "NODE_ENV=development ts-node-dev --respawn src/index.ts --silent",
-  "build": "NODE_ENV=production tsc --silent",
-
-  "start-mongo": "sudo systemctl start mongod",
-  "stop-mongo": "pkill mongod",
-
-  "test:integration": "npm run start-mongo --silent && jest --config jest.config.js --testPathPattern=tests/integration --detectOpenHandles --silent && npm run stop-mongo --silent",
-  "test:unit": "npm run start-mongo --silent && npm run unit --silent && npm run stop-mongo --silent",
-  "test:watch": "npm run start-mongo --silent && npm run watch --silent && npm run stop-mongo --silent",
-  "test:coverage": "npm run start-mongo --silent && npm run coverage --silent && sleep 3 && npm run stop-mongo --silent"
-},
+    "start": "NODE_ENV=production node dist/index.js --silent",
+    "dev": "NODE_ENV=development ts-node-dev --respawn src/index.ts --silent",
+    "build": "NODE_ENV=production tsc",
+    "test": "jest --config jest.config.js",
+    "test:unit": "NODE_ENV=test jest --config jest.config.js --testPathPattern=tests/unit --detectOpenHandles --forceExit --silent",
+    "test:integration": "NODE_ENV=test jest --config jest.config.js --testPathPattern=tests/integration --silent",
+    "test:watch": "NODE_ENV=test jest --watchAll --silent",
+    "test:coverage": "NODE_ENV=test jest --coverage --silent"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
