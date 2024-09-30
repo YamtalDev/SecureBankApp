@@ -2,7 +2,7 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
   verbose: true,
-  testTimeout: 30000,
+  testTimeout: 15000,
   collectCoverage: false,
   coverageDirectory: 'coverage',
   testMatch: ['**/tests/**/*.test.ts'],
